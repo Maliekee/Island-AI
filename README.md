@@ -1,3 +1,5 @@
+<img src="icon.png" width="128" align="right" alt="Island AI">
+
 # Island AI
 
 A BepInEx mod for **Mad Island** (Steam) that teaches NPCs and enemies to walk around
@@ -12,6 +14,9 @@ makes them look ahead and steer around it.
 
 - **Enemies** chasing a target walk around obstacles instead of pushing into them.
 - **Followers and villagers** do the same when following you or chasing an enemy.
+- The mod's icon in the bottom-left of the title screen shows that it is loaded. Hover it for the
+  version; click it to switch the mod off or on, which takes effect immediately (a grey icon is a
+  mod that is switched off).
 - Everything else about how they move is the game's own: give-up distance, water, attacks
   and speed are untouched.
 
@@ -54,9 +59,12 @@ Created on first launch at `BepInEx/config/madisland.islandai.cfg`:
 
 | Setting | Default | |
 |---|---|---|
+| `[General] Enabled` | `true` | Master switch, live. Same as clicking the icon on the title screen. |
 | `[Steering] Enemies` | `true` | Enemies steer around obstacles. |
 | `[Steering] Friends` | `true` | Followers and villagers steer around obstacles. |
 | `[Steering] Probe Distance` | `2` | How far ahead, in metres, an NPC looks (0.5 – 6). |
+| `[Steering] Method` | `AlongWalls` | How a blocked NPC picks its way, live. `AlongWalls` also tries the direction of the wall it met and takes the heading with the most room nearest its target; it finds narrow passages. `Fan` is the first version's rule: the nearest of eleven fixed headings that is completely clear. |
+| `[Steering] Clearance` | `1.1` | How wide the look-ahead is, as a share of the NPC's body (0.8 – 1.3), live. Above 1 rounds corners with room to spare and refuses tight gaps; below 1 squeezes into gaps barely wider than the body and brushes corners. |
 
 ## What is in this repository
 
@@ -68,6 +76,7 @@ src/Shared/      PatchCensus.cs — applies the Harmony patches one class at a t
                  any that no longer bind, which is the first thing to check after a game update
 installer/       the install.bat / install.ps1 shipped in the installer download
 CHANGELOG.md     what changed in each release
+icon.png         the mod icon (src/IslandAI/icon.png is the copy embedded in the DLL for the title screen)
 LICENSE          GNU GPL v3
 ```
 
