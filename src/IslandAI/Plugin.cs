@@ -16,7 +16,7 @@ namespace IslandAI
     {
         public const string PluginGuid = "madisland.islandai";
         public const string PluginName = "Mad Island AI";
-        public const string PluginVersion = "0.2.0";
+        public const string PluginVersion = "0.2.1";
 
         internal static ManualLogSource Log;
 

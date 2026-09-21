@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Fixed: an NPC steered round an obstacle faced its target while walking another way ("moonwalking"). It now faces the way it walks.
+
 ## 0.2.0
 
 - Narrow passages: a walker that meets a wall now also tries the direction of that wall, and takes the heading with the most room nearest its target. It finds corridors and gaps the first version walked past, and no longer turns back when its target crosses a corridor's line.

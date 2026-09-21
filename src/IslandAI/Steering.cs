@@ -41,6 +41,9 @@ namespace IslandAI
         private const float WalkableNormalY = 0.6f;
         // The unstick sidestep (NPCMove.Interval) travels at most this far.
         private const float SidestepRoom = 4f;
+        // A steered heading turns the sprite only when its sideways part is at least this (a unit
+        // vector: 0.25 is about 15 degrees off straight up or down the screen).
+        private const float FaceDeadZone = 0.25f;
 
         private static GameManager _gameMN;
 
@@ -95,6 +98,17 @@ namespace IslandAI
             Vector3 v = rb.velocity;
             float speed = new Vector3(v.x, 0f, v.z).magnitude;
             rb.velocity = _steer * speed + new Vector3(0f, v.y, 0f);
+
+            // Chase and Follow faced the sprite down the line to the target, the same frame,
+            // before this turned the feet: with the target to the right and the way round a wall
+            // to the left, she walks backwards. Face the way walked, through the game's own Rot,
+            // which flips the sprite by the sign of x and runs each character's own hooks (the
+            // mole, the cyborg, the dissect parts) and honours a pinned facing. Only on a clear
+            // left or right, so a near-straight-up heading does not flip her every evaluation.
+            if (Mathf.Abs(_steer.x) > FaceDeadZone)
+            {
+                _nm.Rot(transform.position + _steer);
+            }
         }
 
         private bool Wanted()
