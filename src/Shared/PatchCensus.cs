@@ -7,7 +7,7 @@ using HarmonyLib;
 // Shared SOURCE, not a shared assembly: linked into every plugin csproj
 // (<Compile Include="..\Shared\PatchCensus.cs">), so each mod carries its own
 // private copy and none depends on another at runtime. It replaced the IslandEvents
-// core mod on 2026-09-01, whose only shared piece with a second caller was this.
+// core mod, whose only shared piece with a second caller was this.
 namespace Shared
 {
     /// <summary>
@@ -34,9 +34,9 @@ namespace Shared
     ///    re-signatured method fails at PatchAll time with nothing tying it back to the update.
     ///    The census turns that into a boot-time list: run the game once after an update and
     ///    the log says which patches no longer bind. That list IS the triage.
-    ///    See README "Tracking the game version" and tools/sync-decompiled.ps1, which reports
-    ///    the same question from the other side (which decompiled files changed).
     /// </summary>
+    // See README "Tracking the game version" and the decompile-sync dev script, which reports
+    // the same question from the other side (which decompiled files changed).
     internal static class PatchCensus
     {
         /// <summary>What a census run found. Returned so a caller can refuse to run degraded.</summary>
@@ -162,9 +162,8 @@ namespace Shared
                 "Patch census [{0}]: {1} methods across {2} classes bound, "
                 + "{3} class(es) FAILED, {4} class(es) SKIPPED (no class attribute).",
                 name, r.Methods, r.Classes, r.Failed.Count, r.Unattributed.Count));
-            log.LogWarning("A game update is the usual cause. Re-check the failing targets against "
-                + "decompiled/ (see tools/sync-decompiled.ps1) and game-build.json for which build "
-                + "this is.");
+            log.LogWarning("A game update is the usual cause: this version of the mod does not "
+                + "fit this version of the game yet.");
         }
     }
 }

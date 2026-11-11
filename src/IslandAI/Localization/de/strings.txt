@@ -1,0 +1,14 @@
+# Island AI: German strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=Aus lassen
+badge.keep_on=An lassen
+badge.state_off=aus
+badge.state_on=an
+badge.state_turns_off=beim nächsten Start aus
+badge.state_turns_on=beim nächsten Start an
+
+badge.turn_off=Ausschalten
+badge.turn_on=Einschalten
+badge.visit_site=Offizielle Seite besuchen
+loc.separator= · 

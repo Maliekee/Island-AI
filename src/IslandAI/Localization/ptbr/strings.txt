@@ -1,0 +1,14 @@
+# Island AI: Brazilian Portuguese strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=Manter desligado
+badge.keep_on=Manter ligado
+badge.state_off=desligado
+badge.state_on=ligado
+badge.state_turns_off=desliga no próximo início
+badge.state_turns_on=liga no próximo início
+
+badge.turn_off=Desligar
+badge.turn_on=Ligar
+badge.visit_site=Visitar o site oficial
+loc.separator= · 

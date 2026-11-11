@@ -1,0 +1,14 @@
+# Island AI: Simplified Chinese strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=保持关闭
+badge.keep_on=保持开启
+badge.state_off=关
+badge.state_on=开
+badge.state_turns_off=下次启动时关闭
+badge.state_turns_on=下次启动时开启
+
+badge.turn_off=关闭
+badge.turn_on=开启
+badge.visit_site=访问官方网站
+loc.separator=・

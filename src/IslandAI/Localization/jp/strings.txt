@@ -1,0 +1,14 @@
+# Island AI: Japanese strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=オフのままにする
+badge.keep_on=オンのままにする
+badge.state_off=オフ
+badge.state_on=オン
+badge.state_turns_off=次回の起動でオフ
+badge.state_turns_on=次回の起動でオン
+
+badge.turn_off=オフにする
+badge.turn_on=オンにする
+badge.visit_site=公式サイトを開く
+loc.separator=・

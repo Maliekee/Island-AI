@@ -13,7 +13,7 @@ namespace IslandAI
     {
         public const string PluginGuid = "madisland.islandai";
         public const string PluginName = "Mad Island AI";
-        public const string PluginVersion = "0.2.4";
+        public const string PluginVersion = "0.2.5";
 
         internal static ManualLogSource Log;
 
@@ -33,9 +33,31 @@ namespace IslandAI
             Fan,
         }
 
+        // Island AI lives in plugins/IslandAI/ with its Localization folder (Forgejo #19). A copy
+        // loose in plugins/ (a hand install, an old dev build) is a second Island AI: BepInEx
+        // loads the newer of the two and skips the other, which may be the folder's. Say which
+        // file to delete, whichever of the two this is.
+        private void WarnLooseCopy()
+        {
+            try
+            {
+                if (System.IO.File.Exists(System.IO.Path.Combine(Paths.PluginPath, "IslandAI.dll")))
+                {
+                    Log.LogWarning("BepInEx/plugins/IslandAI.dll is an old copy: delete it. Island AI lives in BepInEx/plugins/IslandAI/.");
+                }
+            }
+            catch (System.Exception e)
+            {
+                Log.LogDebug("Loose copy check: " + e.Message);
+            }
+        }
+
         private void Awake()
         {
             Log = Logger;
+            // its words follow Island UI's language setting, or the game's (Forgejo #19)
+            Shared.Loc.Init("IslandAI", null);
+            WarnLooseCopy();
 
             Enabled = Config.Bind("General", "Enabled", true,
                 "Master switch, live: off = NPCs and enemies move exactly as in the unmodded game. Clicking the mod's icon on the title screen flips this.");

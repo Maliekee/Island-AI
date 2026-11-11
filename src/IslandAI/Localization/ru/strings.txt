@@ -1,0 +1,14 @@
+# Island AI: Russian strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=Оставить выключенным
+badge.keep_on=Оставить включённым
+badge.state_off=выкл.
+badge.state_on=вкл.
+badge.state_turns_off=выключится при следующем запуске
+badge.state_turns_on=включится при следующем запуске
+
+badge.turn_off=Выключить
+badge.turn_on=Включить
+badge.visit_site=Перейти на официальный сайт
+loc.separator= · 

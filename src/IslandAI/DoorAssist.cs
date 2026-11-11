@@ -11,7 +11,7 @@ namespace IslandAI
     /// sliver that reaches into the room is about 0.15 deep. Travel aims at the door's position,
     /// which is behind the wall, drops to a crawl within a metre of it, and wall friction keeps
     /// the NPC from sliding sideways onto the sliver - so they stand at the wall, beside the
-    /// door, for good (found 2026-09-24: three friends at the same z, 0.3 to 0.6 left of the
+    /// door, for good (found with three friends at the same z, 0.3 to 0.6 left of the
     /// trigger).
     ///
     /// So a friend travelling inside their house, within Reach of its exit, gets the call the

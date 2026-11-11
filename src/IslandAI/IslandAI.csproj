@@ -3,8 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>IslandAI</AssemblyName>
+    <!-- which official site the badge's menu opens: Shared/TitleBadge.cs -->
+    <DefineConstants>$(DefineConstants);ISLAND_AI</DefineConstants>
     <RootNamespace>IslandAI</RootNamespace>
-    <Version>0.2.4</Version>
+    <Version>0.2.5</Version>
     <LangVersion>latest</LangVersion>
     <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Mad Island</GameDir>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -15,7 +17,8 @@
     <!-- Shared SOURCE compiled into this DLL: the mods share code, not an assembly -->
     <Compile Include="..\Shared\PatchCensus.cs" Link="Shared\PatchCensus.cs" />
     <Compile Include="..\Shared\TitleBadge.cs" Link="Shared\TitleBadge.cs" />
-    <!-- the mod icon (tools/ui-kit/make_mod_icon.py), shown on the title screen by Shared/TitleBadge.cs -->
+    <Compile Include="..\Shared\Loc.cs" Link="Shared\Loc.cs" />
+    <!-- the mod icon, shown on the title screen by Shared/TitleBadge.cs -->
     <EmbeddedResource Include="icon.png" LogicalName="IslandAI.icon.png" />
   </ItemGroup>
 
@@ -56,6 +59,14 @@
       <HintPath>$(GameDir)\Mad Island_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>$(GameDir)\Mad Island_Data\Managed\Unity.Localization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>$(GameDir)\Mad Island_Data\Managed\Unity.ResourceManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(GameDir)\Mad Island_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
@@ -65,7 +76,18 @@
   <!-- -p:NoDeploy=true builds without touching the game folder (release builds, or a running game
        that has the plugin DLL locked) -->
   <Target Name="CopyToPlugins" AfterTargets="Build" Condition="'$(NoDeploy)' != 'true'">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\BepInEx\plugins" />
+    <!-- in its own folder, as the release zips lay it out, with Localization\ beside it
+         (Forgejo #19). Its old place, loose in plugins\, is cleared: a copy left there would
+         be a second Island AI for the chainloader. A running game locks that copy; the
+         build then warns, and the next build after the game exits removes it. -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\BepInEx\plugins\IslandAI" />
+    <Delete Files="$(GameDir)\BepInEx\plugins\IslandAI.dll" ContinueOnError="WarnAndContinue" />
+    <!-- the strings.txt per language beside the DLL, where Shared/Loc.cs looks -->
+    <ItemGroup>
+      <LocalizationFile Include="Localization\**\*.txt;Localization\**\*.tsv" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LocalizationFile)"
+          DestinationFiles="@(LocalizationFile->'$(GameDir)\BepInEx\plugins\IslandAI\Localization\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
 
 </Project>

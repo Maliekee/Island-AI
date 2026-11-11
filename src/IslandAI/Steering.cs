@@ -68,8 +68,7 @@ namespace IslandAI
         /// The body you walk. Both player characters carry an NPCMove, so this component is
         /// attached to them too - and the one you play keeps a stale actType under its disabled
         /// NPCMove (PlayerGirl: Travel), which read its WASD velocity as a walk's heading and
-        /// steered you round walls (user, 2026-09-27: "It's Island AI that changes my movement
-        /// with WASD keys like it tries to pathfind"). Asked every frame: the character you do
+        /// steered you round walls. Asked every frame: the character you do
         /// not play may still walk as an NPC.
         /// </summary>
         internal static bool PlayerDriven(PlayerMove pm)

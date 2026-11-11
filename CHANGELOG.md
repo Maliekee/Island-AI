@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5
+
+- **Update from the title screen.** Click Island AI's icon on the title screen and choose Check for updates. You see the version, its notes and what will be replaced, and nothing downloads until you press Update. The same menu holds the mod's on/off switch, a check at startup (off until you turn it on) and a link to its official site. This version is installed by hand; the next one can come from inside the game.
+- Island AI speaks your language: it follows the game's language, or the one chosen on Island UI's Language page. Shipped in Simplified Chinese, Japanese, Russian, Brazilian Portuguese, Spanish and German. The translations are machine-made: corrections are welcome, as an issue or a pull request against `Localization/<language>/strings.txt`.
+- The mod's files live in one folder, `BepInEx/plugins/IslandAI/`: the DLL and its `Localization` folder. The release zips already put the DLL there. If you ever copied `IslandAI.dll` straight into `BepInEx/plugins`, delete that loose copy: BepInEx would see two Island AIs and may load the old one. The installer removes it for you, and the mod warns in the BepInEx log while it is there.
+
 ## 0.2.4
 
 - Fixed: walking with WASD was steered like an NPC's walk - pressing towards a wall or a chest turned you along it, as if the game were pathfinding for you. The character you play is never steered, and never let out of a house by Door Assist.

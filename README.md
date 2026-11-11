@@ -45,9 +45,12 @@ All three put the same thing in the same place:
 
 ```
 BepInEx/plugins/IslandAI/IslandAI.dll   (plus README.txt)
+BepInEx/plugins/IslandAI/Localization/  (its words in each language)
 ```
 
-To uninstall by hand, delete the `BepInEx/plugins/IslandAI` folder.
+To uninstall by hand, delete the `BepInEx/plugins/IslandAI` folder. An `IslandAI.dll` loose in
+`BepInEx/plugins` itself is an old copy from a hand install: delete it, or BepInEx sees two
+Island AIs (the installer removes it for you).
 
 The game folder is usually
 `C:\Program Files (x86)\Steam\steamapps\common\Mad Island` — in Steam: right-click the
@@ -92,7 +95,8 @@ BepInEx's DLLs from the game folder).
 dotnet build src/IslandAI/IslandAI.csproj -c Release
 ```
 
-A build copies `IslandAI.dll` into the game's `BepInEx/plugins`. If the game is somewhere
+A build copies `IslandAI.dll` and its `Localization` folder into the game's
+`BepInEx/plugins/IslandAI`, and removes an old loose `BepInEx/plugins/IslandAI.dll`. If the game is somewhere
 other than the default Steam path, add `-p:GameDir="D:\...\Mad Island"`; to build without
 copying, add `-p:NoDeploy=true`.
 
@@ -105,4 +109,5 @@ else, the update moved something and the mod needs a new release.
 
 ## Contact
 
-Bugs, ideas, or want to reuse something? [Open an issue](../../issues).
+Bugs, ideas, or want to reuse something? [Open an issue](../../issues), write to
+[maliekee@pm.me](mailto:maliekee@pm.me), or find me on [Discord](https://discord.com/users/1523362502224777439).

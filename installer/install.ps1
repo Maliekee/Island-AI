@@ -60,9 +60,7 @@ function Find-Game {
     return $null
 }
 
-$what = 'Installing'
-if ($Uninstall) { $what = 'Uninstalling' }
-Say "$what $($info.Name) $($info.Version)" 'Cyan'
+if ($Uninstall) { Say "Uninstalling $($info.Name)" 'Cyan' }
 if ($DryRun) { Say '(dry run: nothing will be changed)' 'Yellow' }
 
 # --- 1. the game
@@ -81,6 +79,19 @@ if (Get-Process -Name 'Mad Island' -ErrorAction SilentlyContinue) {
 }
 
 $plugins = Join-Path $GameDir 'BepInEx\plugins'
+
+# Installing, updating or reinstalling: the main DLL already under plugins, if
+# any, says which version is there (its file version is the mod's, plus a .0)
+if (-not $Uninstall) {
+    $present = $null
+    if ((Test-Path $plugins) -and $info.Dlls) {
+        $found = Get-ChildItem $plugins -Recurse -Filter $info.Dlls[0] -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($found) { $present = ($found.VersionInfo.FileVersion -replace '^(\d+\.\d+\.\d+)\.0$', '$1') }
+    }
+    if (-not $present) { Say "Installing $($info.Name) $($info.Version)" 'Cyan' }
+    elseif ($present -eq $info.Version) { Say "Reinstalling $($info.Name) $($info.Version)" 'Cyan' }
+    else { Say "Updating $($info.Name) $present -> $($info.Version)" 'Cyan' }
+}
 
 try {
     if ($Uninstall) {

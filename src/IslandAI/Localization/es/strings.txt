@@ -1,0 +1,14 @@
+# Island AI: Spanish strings, machine-translated from en/strings.txt.
+# Corrections are welcome: edit the right side of a line and keep the key and every {0}.
+
+badge.keep_off=Mantener desactivado
+badge.keep_on=Mantener activado
+badge.state_off=desactivado
+badge.state_on=activado
+badge.state_turns_off=se desactiva al reiniciar
+badge.state_turns_on=se activa al reiniciar
+
+badge.turn_off=Desactivar
+badge.turn_on=Activar
+badge.visit_site=Visitar el sitio oficial
+loc.separator= · 
