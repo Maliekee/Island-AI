@@ -249,11 +249,20 @@ namespace Shared
             // still running but on its way out: visibly answered, without claiming it is off yet
             _image.color = running && !wanted ? new Color(0.55f, 0.55f, 0.55f, 1f)
                 : running ? Color.white : new Color(0.62f, 0.62f, 0.62f, 1f);
-            string note = Note != null ? Note() : "";
+            string note = NoteNow();
             string sign = Sign != null ? Sign() : "";
             _pip.SetActive(running != wanted || note.Length > 0);
             _sign.SetActive(sign.Length > 0);
             _text.text = Words(note, sign);
+        }
+
+        // the mod's own note, after the free-mode line when the mod switched off for free mode
+        // (FreeModeGate): that one says why it is off and what to do
+        private static string NoteNow()
+        {
+            string own = Note != null ? Note() : "";
+            string free = FreeModeGate.Note();
+            return free.Length == 0 ? own : own.Length == 0 ? free : free + "\n" + own;
         }
 
         private static string Words(string note, string sign)
@@ -393,7 +402,7 @@ namespace Shared
             paper.transform.SetParent(_menu.transform, false);
             MenuFrame(paper, DarkPaper, 4, 4, 2f);
 
-            string note = Note != null ? Note() : "";
+            string note = NoteNow();
             string sign = Sign != null ? Sign() : "";
             Text heading = Label(paper.transform, Words(note, sign));
             heading.supportRichText = true;

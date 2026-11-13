@@ -12,3 +12,5 @@ badge.turn_off=关闭
 badge.turn_on=开启
 badge.visit_site=访问官方网站
 loc.separator=・
+freemode.badge=进入自由模式后已关闭，暂不支持该模式。重启游戏即可重新开启。
+freemode.log={0}：在自由模式中暂时关闭。重启游戏即可再次使用。

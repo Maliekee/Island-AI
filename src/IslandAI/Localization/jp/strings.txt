@@ -12,3 +12,5 @@ badge.turn_off=オフにする
 badge.turn_on=オンにする
 badge.visit_site=公式サイトを開く
 loc.separator=・
+freemode.badge=フリーモードに入ったためオフです。まだ対応していません。ゲームを再起動すると元に戻ります。
+freemode.log={0}：フリーモードでは現在オフです。ゲームを再起動すると再び使えます。

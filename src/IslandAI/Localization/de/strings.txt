@@ -12,3 +12,5 @@ badge.turn_off=Ausschalten
 badge.turn_on=Einschalten
 badge.visit_site=Offizielle Seite besuchen
 loc.separator= · 
+freemode.badge=Aus seit dem freien Modus, der noch nicht unterstützt wird. Starte das Spiel neu, um es wieder einzuschalten.
+freemode.log={0}: im freien Modus vorerst aus. Starte das Spiel neu, um sie wieder zu nutzen.

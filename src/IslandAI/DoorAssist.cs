@@ -42,7 +42,7 @@ namespace IslandAI
                 return;
             }
             _next = Time.time + Interval;
-            if (!Plugin.Enabled.Value || !Plugin.DoorAssist.Value || _nm == null
+            if (!Plugin.Active || !Plugin.DoorAssist.Value || _nm == null
                 || _nm.actType != NPCMove.ActType.Travel || Steering.PlayerDriven(_pm))
             {
                 return;

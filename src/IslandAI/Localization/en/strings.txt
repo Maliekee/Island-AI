@@ -20,4 +20,7 @@ badge.turn_off=Turn off
 badge.turn_on=Turn on
 badge.visit_site=Visit the official site
 
+freemode.badge=Off since free mode, which it does not support yet. Restart the game to turn it back on.
+freemode.log={0}: off in free mode for now. Restart the game to use them again.
+
 loc.separator= · 

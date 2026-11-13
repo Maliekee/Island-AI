@@ -12,3 +12,5 @@ badge.turn_off=Desligar
 badge.turn_on=Ligar
 badge.visit_site=Visitar o site oficial
 loc.separator= · 
+freemode.badge=Desligado desde o modo livre, que ainda não é suportado. Reinicie o jogo para ligá-lo de novo.
+freemode.log={0}: desligados no modo livre por enquanto. Reinicie o jogo para usá-los de novo.

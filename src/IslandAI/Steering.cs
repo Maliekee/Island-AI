@@ -152,7 +152,7 @@ namespace IslandAI
 
         internal static bool Enabled(NPCMove nm)
         {
-            if (!Plugin.Enabled.Value)
+            if (!Plugin.Active)
             {
                 return false;
             }

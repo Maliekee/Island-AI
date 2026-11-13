@@ -12,3 +12,5 @@ badge.turn_off=Desactivar
 badge.turn_on=Activar
 badge.visit_site=Visitar el sitio oficial
 loc.separator= · 
+freemode.badge=Apagado desde el modo libre, que aún no admite. Reinicia el juego para volver a activarlo.
+freemode.log={0}: apagados en el modo libre por ahora. Reinicia el juego para volver a usarlos.

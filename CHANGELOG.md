@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.6
+
+- **Free mode isn't supported yet,** so Island AI switches itself off when the game's new free mode starts, and NPCs move as they do without mods. Restart the game to get it back; your settings stay as they are.
+
 ## 0.2.5
 
 - **Update from the title screen.** Click Island AI's icon on the title screen and choose Check for updates. You see the version, its notes and what will be replaced, and nothing downloads until you press Update. The same menu holds the mod's on/off switch, a check at startup (off until you turn it on) and a link to its official site. This version is installed by hand; the next one can come from inside the game.

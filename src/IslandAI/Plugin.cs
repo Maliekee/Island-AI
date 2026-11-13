@@ -13,11 +13,18 @@ namespace IslandAI
     {
         public const string PluginGuid = "madisland.islandai";
         public const string PluginName = "Mad Island AI";
-        public const string PluginVersion = "0.2.5";
+        public const string PluginVersion = "0.2.6";
 
         internal static ManualLogSource Log;
 
         internal static ConfigEntry<bool> Enabled;
+
+        // what Steering and DoorAssist ask: the switch, and not switched off for free mode
+        // (Shared/FreeModeGate.cs: off until the game restarts)
+        internal static bool Active
+        {
+            get { return Enabled != null && Enabled.Value && !Shared.FreeModeGate.Dormant; }
+        }
         internal static ConfigEntry<bool> SteerEnemies;
         internal static ConfigEntry<bool> SteerFriends;
         internal static ConfigEntry<float> ProbeDistance;
@@ -77,11 +84,21 @@ namespace IslandAI
             DoorAssist = Config.Bind("Houses", "Door Assist", true,
                 "Live. A friend walking out of a house who reaches its door but cannot touch it - the Native House's exit sits mostly inside its front wall - is let out as the door would have let them out. Off = they can stand at the wall for good, as in the unmodded game.");
 
+            // free mode is not supported yet: entering it switches Island AI off until the
+            // game restarts - patches off, and the steering it put on NPCs taken off again
+            Shared.FreeModeGate.Install(PluginName, () =>
+            {
+                try { new Harmony(PluginGuid).UnpatchSelf(); }
+                catch (System.Exception e) { Log.LogWarning("Free mode: unpatch threw: " + e); }
+                foreach (Steering s in UnityEngine.Object.FindObjectsOfType<Steering>()) { UnityEngine.Object.Destroy(s); }
+                foreach (DoorAssist d in UnityEngine.Object.FindObjectsOfType<DoorAssist>()) { UnityEngine.Object.Destroy(d); }
+                Shared.TitleBadge.RefreshAll();
+            });
             var harmony = new Harmony(PluginGuid);
             Shared.PatchCensus.ApplyAndReport(harmony, Assembly.GetExecutingAssembly(), Log);
             // live: Steering asks Enabled every time, so running and wanted are the same answer
             Shared.TitleBadge.Install(Assembly.GetExecutingAssembly(), "IslandAI.icon.png", "Island AI", PluginVersion,
-                () => Enabled.Value, () => Enabled.Value, on =>
+                () => Active, () => Enabled.Value, on =>
                 {
                     Enabled.Value = on;
                     Log.LogInfo(PluginName + " switched " + (on ? "on" : "off") + " from the title screen.");
